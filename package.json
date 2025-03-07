@@ -1,0 +1,24 @@
+{
+  "name": "cybersource-auth",
+  "version": "1.0.0",
+  "description": "A Node.js method to generate HTTP headers for CyberSource rest API requests.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "http",
+    "cybersource",
+    "authentication",
+    "sha256",
+    "hmac",
+    "signature",
+    "visa",
+    "payment",
+    "gateway",
+    "rest",
+    "api"
+  ],
+  "author": "Nawaf Abdullah",
+  "license": "MIT"
+}
