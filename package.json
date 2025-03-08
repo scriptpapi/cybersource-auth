@@ -1,8 +1,9 @@
 {
   "name": "cybersource-auth",
-  "version": "1.0.0",
-  "description": "A Node.js method to generate HTTP headers for CyberSource rest API requests.",
+  "version": "2.0.0",
+  "description": "A Node.js method to generate HTTP headers for CyberSource REST API requests, and validate Cybersource JWT tokens",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,5 +21,13 @@
     "api"
   ],
   "author": "Nawaf Abdullah",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.0",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.9",
+    "typescript": "^5.8.2"
+  }
 }
