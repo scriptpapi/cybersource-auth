@@ -1,7 +1,7 @@
-# Cybersource HTTP Signature Authentication
-
-
-A javascript method that conveniently generates your Cybersource API authentication headers for you.
+# Cybersource Authentication
+A javascript package that conveniently:
+- Generates your Cybersource API authentication headers for you.
+- Validate your JWT token from Cybersource and decodes.
 
 # Installation.
 
@@ -18,7 +18,9 @@ yarn add cybersource-auth
 ```
 
 
-# How to use.
+# Generate Request Headers
+This method helps you create your Cybersource API request headers.
+ 
 Import the package
 ```js
 const { createHeaders } = require('cybersource-auth');
@@ -151,3 +153,57 @@ try {
 
 
 
+
+# Validate JWT
+
+```js
+const { validateJwt } = require('cybersource-auth');
+```
+
+Then plug in the token and your host:
+
+```js
+let jwtToken = "big.JwtToken.String"
+let host = "apitest.cybersource.com"
+let decoded = await validateJwt(jwtToken, host)
+```
+If token is valid, the `decoded` output would be:
+```json
+{
+    "flx": {
+        "path": "/flex/v2/tokens",
+        "data": "q1SrfE6JO3aYhV7tmuEO3xAAEAGaC/flb/z5754fOJ8Ypza+kZwcb0YhJ1ih1D1WxzUiYgYwpgiCZ0NOrObwkAMmUP3bh5CsvbhQT2CZtmkj/d/wAYUIOfBn4mqFbWmSNgmd",
+        "origin": "https://testflex.cybersource.com",
+        "jwk": {
+            "kty": "RSA",
+            "e": "AQAB",
+            "use": "enc",
+            "n": "3iYvhPuMQoyH_xX8AiI3orn0yjxvr4ufIkSmoxVSmOFg12sTVbRAPUdS5TrZAKJUwhdpLaoVoC5-TtQTYwkIXagEC4QAmdYllqmH0fw0lfckyTMzAtLvFX6rqU7jkHf-QgIxDohwQiXLhEe06Kre6RqNtL-5vwug4uT6peLaI5q1EoDSZa1nWSqLAXCKuVMw3qfGxVvrFl_r-K8DblG3xHrYDn0XHVeBURpIh-UlnyeZJXj72GsyrxZy0J-uk6LUOQQSuJJan0cHgy164UZAcedTRDFvuIQQf8s5ieTG6mm9g8WoMeTdpYZSSUFaMdrZqPAQeMYueYInCXfzjMnjCw",
+            "kid": "07IywPACanM9UPuO9TQ6riy88mEdqUv6"
+        }
+    },
+    "ctx": [
+        {
+            "data": {
+                "clientLibraryIntegrity": "sha256-4TUKBd3VMIGGNs1ZLzfU6bG0YG4kUScSOtPu5ec7Ygo=",
+                "clientLibrary": "https://testflex.cybersource.com/microform/bundle/v2.0.2/flex-microform.min.js",
+                "allowedCardNetworks": [
+                    "VISA",
+                    "MASTERCARD",
+                    "AMEX"
+                ],
+                "targetOrigins": [
+                    "http://localhost:3000",
+                    "https://www.example.net"
+                ],
+                "mfOrigin": "https://testflex.cybersource.com"
+            },
+            "type": "mf-2.0.0"
+        }
+    ],
+    "iss": "Flex API",
+    "exp": 1741417277,
+    "iat": 1741416377,
+    "jti": "YEoklGF9hS78usgy"
+}
+```
